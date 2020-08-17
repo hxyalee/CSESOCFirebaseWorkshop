@@ -16,5 +16,5 @@
 ```
 6. To deploy the functions to the cloud,
 ```bash
-    firebase serve
+    firebase deploy
 ```
