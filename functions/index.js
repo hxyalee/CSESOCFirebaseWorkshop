@@ -36,7 +36,7 @@ const config = require("./FirebaseConfig");
 firebase.initializeApp(config);
 admin.initializeApp({
   credential: admin.credential.cert(ServiceAccount),
-  databaseURL: "https://csesocworkshop.firebaseio.com",
+  databaseURL: "https://`csesocworkshop.firebaseio.com",
 });
 
 const db = admin.firestore();
