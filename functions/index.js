@@ -68,7 +68,29 @@ app.post("/createNewMovie", (request, response) => {
         status: "success",
         details: `movie ID ${data.id} added`,
       });
-    });
+    })
+    .catch((err) =>
+      response.status(500).json({ status: "failed", error: err.code })
+    );
+});
+
+app.get("/movie/:movieId", (request, response) => {
+  const id = request.params.movieId;
+  db.collection("movies")
+    .doc(id)
+    .get()
+    .then((data) => {
+      if (data.exists) {
+        console.log(data);
+        return response.json({ status: "success", movie: data.data() });
+      }
+      return response
+        .status(404)
+        .json({ status: "failed", error: "Movie not found" });
+    })
+    .catch((err) =>
+      response.status(500).json({ status: "failed", error: err.code })
+    );
 });
 
 app.post("/signup", (request, response) => {
@@ -82,7 +104,8 @@ app.post("/signup", (request, response) => {
     .then((data) => data.user.getIdToken())
     .then((token) => {
       return response.json({ token });
-    });
+    })
+    .catch((err) => response.status(500).json({ error: err.code }));
 });
 
 app.post("login", (request, response) => {
@@ -94,7 +117,8 @@ app.post("login", (request, response) => {
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
     .then((data) => data.user.getIdToken())
-    .then((token) => response.json({ token }));
+    .then((token) => response.json({ token }))
+    .catch((err) => response.status(500).json({ error: err.code }));
 });
 
 exports.api = functions.region("asia-east2").https.onRequest(app);
