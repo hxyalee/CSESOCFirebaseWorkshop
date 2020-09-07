@@ -9,7 +9,11 @@
     npm install
     firebase login
 ```
-4. Set up your project with the necessary config and service account keys
+   If you cloned this repo, you should be running `npm install` inside the **CSESOCFirebaseWorkshop/functions** folder.
+4. Set up your project with the necessary config and service account keys:
+   * Open index.js (inside the functions folder). Follow the instructions to add your own service account key and config.
+   * If necessary, open .firebaserc and change the "default" value from "csesocworkshop" to your firebase project name (e.g. "movie-workshop-12345").
+   * You may need to change the node version number in package.json to match yours.
 5. To try the ports locally,
 ```bash
     firebase serve
