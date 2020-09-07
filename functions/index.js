@@ -11,6 +11,8 @@ const ServiceAccount = require("./ServiceAccountKey.json");
 const express = require("express");
 const app = express();
 const firebase = require("firebase");
+const cors = require('cors');
+app.use(cors({origin: true}));
 
 // How to retrieve your firebase config:
 // 1. Create your firebase project
